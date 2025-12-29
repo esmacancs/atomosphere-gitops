@@ -8,8 +8,8 @@ metadata:
 spec:
   project: yaook
   source:
-    repoURL: https://github.com/your-repo/yaook-operator-gitops
-    targetRevision: HEAD
+    repoURL: https://github.com/esmacancs/atomosphere-gitops
+    targetRevision: main
     path: manifests
   destination:
     server: https://kubernetes.default.svc
