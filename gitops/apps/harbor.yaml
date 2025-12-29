@@ -1,0 +1,50 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: harbor
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  project: yaook
+  source:
+    repoURL: https://helm.goharbor.io
+    chart: harbor
+    targetRevision: 1.*
+    helm:
+      values: |
+        expose:
+          type: nodePort
+          nodePort:
+            ports:
+              http:
+                nodePort: 30080
+              https:
+                nodePort: 30443
+        externalURL: http://harbor.local:30080
+        persistence:
+          enabled: true
+          persistentVolumeClaim:
+            registry:
+              storageClass: local-path
+            chartmuseum:
+              storageClass: local-path
+            jobservice:
+              storageClass: local-path
+            database:
+              storageClass: local-path
+            redis:
+              storageClass: local-path
+            trivy:
+              storageClass: local-path
+        trivy:
+          enabled: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: harbor
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

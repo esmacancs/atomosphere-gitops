@@ -1,0 +1,183 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: yaook-operators-infra
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+spec:
+  project: yaook
+  source:
+    repoURL: https://charts.yaook.cloud/operator/stable/
+    chart: infra-operator
+    targetRevision: 0.20251211.0
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: yaook
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: yaook-operators-keystone
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+spec:
+  project: yaook
+  source:
+    repoURL: https://charts.yaook.cloud/operator/stable/
+    chart: keystone-operator
+    targetRevision: 0.20251211.0
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: yaook
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: yaook-operators-keystone-resources
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+spec:
+  project: yaook
+  source:
+    repoURL: https://charts.yaook.cloud/operator/stable/
+    chart: keystone-resources-operator
+    targetRevision: 0.20251211.0
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: yaook
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: yaook-operators-nova
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+spec:
+  project: yaook
+  source:
+    repoURL: https://charts.yaook.cloud/operator/stable/
+    chart: nova-operator
+    targetRevision: 0.20251211.0
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: yaook
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: yaook-operators-nova-compute
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+spec:
+  project: yaook
+  source:
+    repoURL: https://charts.yaook.cloud/operator/stable/
+    chart: nova-compute-operator
+    targetRevision: 0.20251211.0
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: yaook
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: yaook-operators-neutron
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+spec:
+  project: yaook
+  source:
+    repoURL: https://charts.yaook.cloud/operator/stable/
+    chart: neutron-operator
+    targetRevision: 0.20251211.0
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: yaook
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: yaook-operators-neutron-ovn
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+spec:
+  project: yaook
+  source:
+    repoURL: https://charts.yaook.cloud/operator/stable/
+    chart: neutron-ovn-operator
+    targetRevision: 0.20251211.0
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: yaook
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: yaook-operators-horizon
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+spec:
+  project: yaook
+  source:
+    repoURL: https://charts.yaook.cloud/operator/stable/
+    chart: horizon-operator
+    targetRevision: 0.20251211.0
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: yaook
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

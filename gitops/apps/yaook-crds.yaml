@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: yaook-crds
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  project: yaook
+  source:
+    repoURL: https://charts.yaook.cloud/operator/stable/
+    chart: crds
+    targetRevision: 0.20251211.0
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: yaook
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
