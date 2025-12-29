@@ -44,7 +44,7 @@ $gitopsDir = Join-Path $repoRoot 'gitops'
 $appsDir = Join-Path $gitopsDir 'apps'
 
 Write-Host "Installing Argo CD ($ArgoCDVersion)..." -ForegroundColor Cyan
-Invoke-K get ns argocd -o name 2>$null | Out-Null
+& $script:KubectlCmd get ns argocd -o name 2>$null | Out-Null
 if ($LASTEXITCODE -ne 0) { Invoke-K create namespace argocd | Out-Null }
 
 $installUrl = "https://raw.githubusercontent.com/argoproj/argo-cd/$ArgoCDVersion/manifests/install.yaml"
