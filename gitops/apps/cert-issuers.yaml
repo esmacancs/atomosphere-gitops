@@ -8,7 +8,7 @@ metadata:
 spec:
   project: yaook
   source:
-    repoURL: https://github.com/esmacancs/atomosphere-gitops
+    repoURL: https://github.com/esmacancs/atomosphere-gitops.git.git
     targetRevision: main
     path: manifests
   destination:
